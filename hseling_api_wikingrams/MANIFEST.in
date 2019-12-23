@@ -1,0 +1,2 @@
+recursive-include hseling_api_wikingrams/templates *
+recursive-include hseling_api_wikingrams/static *
