@@ -17,20 +17,16 @@ AUTHOR = 'Anna Nikolaeva'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = '1.0.0'
 
-REQUIRED = [
-    'hseling-lib-wikingrams',
+REQUIRED = ['matplotlib',
+    'pymystem3',
+    'jsonrpc',
     'flask',
-    'minio',
-    'requests',
-    'lxml',
-    'html5lib',
-    'beautifulsoup4',
-    'scrapy',
-
+    'jsonrpcclient',
+    'pandas',
+    'pprint',
     'json-rpc',
-
-    'mysql',
-    'mysql-connector',
+    'dtaidistance',
+    'sklearn',
 
 ]
 

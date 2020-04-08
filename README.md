@@ -30,15 +30,15 @@ To stop your environment press C-c or:
 
 Check if your API container started successfully:
 
-    curl http://localhost:5000/healthz
+    curl http://0.0.0.0:5000/healthz
 
-Now you can use curl to check RPC endpoints at localhost:5000:
+Now you can use curl to check RPC endpoints at 0.0.0.0:5000:
 
-    curl -XPOST -H "Content-type: application/json" -d '{"id": 1, "method": "list_files", "params": []}' http://localhost:5000/rpc/
+    curl -XPOST -H "Content-type: application/json" -d '{"id": 1, "method": "list_files", "params": []}' http://0.0.0.0:5000/rpc/
 
 You can navigate to main web application using this link:
 
-    open http://localhost:8000/web/
+    open http://0.0.0.0:8001/wikingram/
 
 ## License
 

@@ -1,26 +1,17 @@
-FROM hseling/hseling-api-base:python3.6-alpine3.7 as build
+FROM ubuntu:latest
+LABEL maintainer="Toma Zhordaniya <rysshebeiyezs@gmail.com>"
 
-LABEL maintainer="Anna Nikolaeva <info@linghub.ru>"
+RUN apt-get update
+RUN apt-get install -y python3 python3-dev python3-pip nginx
+RUN pip3 install uwsgi
 
-RUN mkdir /dependencies
-COPY ./hseling_api_wikingrams/requirements.txt /dependencies/requirements.txt
-COPY ./hseling_api_wikingrams/setup.py /dependencies/setup.py
+WORKDIR /app
 
-RUN pip install -r /dependencies/requirements.txt
+COPY requirements.txt requirements.txt
 
-FROM hseling/hseling-api-base:python3.6-alpine3.7 as production
+RUN pip3 install -r requirements.txt
 
-COPY --from=build /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/site-packages
-COPY --from=build /usr/lib/python3.6/site-packages /usr/lib/python3.6/site-packages
+COPY . .
+ENV LANG=C.UTF-8
+CMD [ "python3", "app.py" ]
 
-COPY --from=build /dependencies /dependencies
-
-COPY ./hseling_lib_wikingrams /dependencies/hseling_lib_wikingrams
-RUN pip install /dependencies/hseling_lib_wikingrams
-
-COPY ./hseling_api_wikingrams/hseling_api_wikingrams /app/hseling_api_wikingrams
-COPY ./hseling_api_wikingrams/main.py /app/main.py
-
-ENV HSELING_API_WIKINGRAMS_SETTINGS="/app/hseling_api_wikingrams/default_settings.py"
-
-HEALTHCHECK CMD curl --fail http://localhost/healthz || exit 1

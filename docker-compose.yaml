@@ -1,100 +1,22 @@
-version: '3.4'
-
-x-common-variables: &common-variables
- MINIO_ACCESS_KEY: minio
- MINIO_SECRET_KEY: minio123
- MINIO_URL: minio:9000
- MINIO_BUCKET_NAME: hse-api-bucket
- MYSQL_HOST: mysql
- MYSQL_ROOT_PASSWORD: mysql123
- MYSQL_USER: mysql
- MYSQL_PASSWORD: mysql123
- MYSQL_DATABASE: hse-api-database
- RESTRICTED_MODE: 0
-
+version: "3.7"
 services:
- hse-api-web:
-  build:
-   context: .
-   dockerfile: hseling_api_wikingrams/Dockerfile
-  ports:
-   - "5000:80"
-  volumes:
-   - ./hseling_api_wikingrams/hseling_api_wikingrams:/app/hseling_api_wikingrams
-  links:
-   - minio
-   - mysql
-  environment: *common-variables
+  back:
+    depends_on:
+      - api
+    build:
+      context: hseling_web_wikingrams/
+      
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
 
+    command: ["python3", "manage.py", "runserver", "0.0.0.0:8001"]
 
- minio:
-  image: minio/minio:latest
-  volumes:
-   - data:/data
-  ports:
-   - "9000:9000"
-  command: server /data/minio
-  environment: *common-variables
+  api:
+    build:
+      context: hseling_api_wikingrams/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
 
-
- mysql:
-  image: mysql
-  command: --default-authentication-plugin=mysql_native_password
-  restart: always
-  environment: *common-variables
-
-
-
- # Development related
- db:
-  env_file: hseling_web_wikingrams/environment.env
-  build:
-   context: ./hseling_web_wikingrams/
-   dockerfile: ./docker/db/Dockerfile
-   args:
-    # These values should be in sync with environment.env
-    # for development. If you change them, you'll 
-    # need to rebuild the container
-    - POSTGRES_DB=templatesitedb
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=somepassword
-    - POSTGRES_PORT=5432
-    # Remember to keep this consistent
-    - django_secret_key=secret_key!
-
- log:
-  env_file: hseling_web_wikingrams/environment.env
-  build:
-   context: ./hseling_web_wikingrams/
-   dockerfile: ./docker/log/Dockerfile
-
- build-deps:
-  env_file: hseling_web_wikingrams/environment.env
-  build:
-   context: ./hseling_web_wikingrams/
-   dockerfile: ./docker/deps/Dockerfile
-  volumes:
-   - ./hseling_web_wikingrams/vendor:/opt/ext_vendor
-  command: /opt/copy_deps.sh
-
- dev-server:
-  env_file: hseling_web_wikingrams/environment.env
-  environment:
-   - CONSOLE_LOGS=1
-  build: 
-   context: ./hseling_web_wikingrams/
-   args:
-    # Remember to keep this consistent
-    - django_secret_key=secret_key!
-  command: ./start_dev_server.sh
-  ports:
-   - "8000:80"
-  volumes:
-   - ./hseling_web_wikingrams/src:/opt/code
-  depends_on:
-   - db
-   - log
-   - hse-api-web
-
-volumes:
-  data:
+    command: [ "python3", "app.py" ]

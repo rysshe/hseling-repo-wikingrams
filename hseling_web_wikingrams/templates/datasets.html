@@ -1,0 +1,190 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>WikiNgram Viewer</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/jumbotron/">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/jumbotron.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top flex-row-reverse" style="background-color:#D4D8E8;padding: 0;height: 6%">
+
+            <a class="navbar-brand" style="background-color:#8b9dc3;margin-left:0;margin-right:0;height: 100%;width: 12%;padding-top: 5" align="center" href="../similarity"> Similarity Viewer </a>
+            <a class="navbar-brand" align="center" style="background-color:#476f93;margin-left:0;margin-right:0;height: 100%;width: 12%" width="100%" height="100%" href="../wikingram"> WikiNgram Viewer </a>
+            <a class="navbar-brand" style="background-color:#D4D8E8;margin-left:0;margin-right:0;margin-top: 0;margin-bottom: 0;height: 100%;width: 12%" align="center" href=""> Pre-reform Unigrams </a>
+            <a class="navbar-brand bg-dark" style="background-color:black;margin-left:0;margin-right:60%;height: 100%;width: 4% "align="center" href="../landing"> Main </a>
+            <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="../landing">Main <span class="sr-only">(current)</span></a>
+                </li>
+            </ul> -->
+
+        </nav>
+
+    <main role="main">
+        <div class="jumbotron bg-white" style="padding-right:10%; padding-left:10%">
+            <div class="container">
+                <p class="display-4" style="font-size: 300%" align="center"><b>Pre-reform Unigrams</b>
+                                    <br>
+                                    <img  src="{% static 'images/events4.png' %}" class="img-fluid" width="40%" height="40%"  alt="Events" >
+                </p align="center">
+                <p align="center">
+                    Данный источник создан для частичного восполнения информации, потерянной в процессе распознавания дореформенной (1918 г.) русской орфографии в <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Googl Books</a>.
+                    <p>Примеры:</p>
+                    <p align="center">
+                        <b>Решенные проблемы</b>
+                    </p>
+                    <p align="center"><img src="{% static 'images/corexamples.PNG' %}" class="img-fluid" width="500" height="300" alt="Events"></p>
+
+
+                    <p align="center">
+                        <b>Нерешенные проблемы</b>
+                    </p>
+
+                  <!--   <div class="row">
+                        <div class="col-sm-4">
+                            Решенные проблемы
+                                <div class="row">
+                                    <div class="col-8 col-sm-7">
+                                        Level 2: .col-8 .col-sm-7
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-4 col-sm-7">
+                            Нерешенные проблемы
+                        </div>
+                        <div class="col-sm-4">
+                        хх
+                        </div>
+
+                    </div> -->
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <p><img src="{% static 'images/examples.PNG' %}" class="img-fluid" width="700" height="500" alt="Examples"></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p><img src="{% static 'images/translitexample.PNG' %}" class="img-fluid" width="700" height="500" alt="Events"></p>
+                        </div>
+                    </div>
+                    <p align="center"><img src="{% static 'images/cutexample.PNG' %}" class="img-fluid" width="500" height="300" alt="Events"></p>
+                    <p align="center"> Кликнув на символ, вы скачаете датасет из униграм, начинающихся на этот символ.
+                </p>
+                    <p align="center">
+
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">0</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">1</a>
+
+
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">3</a>
+
+
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">2</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">4</a>
+
+
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">5</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">6</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">7</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">8</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">9</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">a</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">b</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">c</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">d</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">e</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">f</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">g</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">h</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">i</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">j</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">k</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">l</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">m</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">n</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">o</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">p</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">q</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">r</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">s</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">t</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">u</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">v</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">w</a>
+                    <a href="https://drive.google.com/uc?id=1k1tJYj4XsmKq3_NK-Z6TUU7E7iw1c_YR">x</a>
+                    <a href="https://drive.google.com/uc?id=1keJPwSNTFwH3U8-HYtsHw-LsBLHSWcW9">y</a>
+                    <a href="https://drive.google.com/uc?id=1zJzXNDGrjpCFH__cmblxXQCsJM9VgfKH">z</a>
+                    <a href="https://drive.google.com/uc?id=1_2nZbLToP-0Ey4Atc-ZjAmY0GAdZlqhj">other</a>
+
+                </p>
+
+
+
+
+                </div>
+        </div>
+<div class="jumbotron" id="about">
+            <div class="container">
+                <h3> Об источнике </h3>
+                <p> Подробнее об алгоритме исправления можно прочесть в <a href="https://github.com/kak-to-tak/Google_rusngram_spellcheck/blob/master/Experiments_with_Automatic_Spelling_Correction_of_Russian_Google_ngrams.pdf">статье</a> или ознакомиться с <a href="https://github.com/kak-to-tak/Google_rusngram_spellcheck">репозиторием</a>.
+                </p>
+                <p>
+                    По аналогии с Google Ngrams начальные буквы, которыми названы файлы униграм, транслитерированы.
+                </p>
+                <p>
+                    <b> Транслиттерация: </b>
+
+                </p>
+                <br>
+                <p><b> Формат файлов: </b> Каждый файл представляет собой данные разделенные табуляцией. Каждая срока аналогично нграмам <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Googl Books</a> имеет следующий вид:
+                </p>
+                <blockquote><pre>index raw_ngram TAB n_gram TAB year TAB match_count TAB volume_count TAB new_index TAB non_dictionary TAB corrected_ngram NEWLINE</pre>
+                </blockquote>
+                <p>В качестве примера ниже привеодится 1897-я строка файла <tt>1.tsv</tt>:
+                </p>
+                <blockquote><pre>1  1верь 1верь 1897  1 1 т True тверь
+</pre></blockquote>
+                <p>Информацию о значениях названий колонок можно узнать на странице <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Googl Books</a>.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="container">
+        <p> Ресурс разработан студентами магистерской программы НИУ ВШЭ "Компьютерная лингвистика" в 2018-2020 гг. </p>
+        <p>Научный руководитель: Орехов Борис Валерьевич</p>
+        <p>Участники проекта:</p>
+    <ul>
+	    <li>Николаева Анна</li>
+	    <li>Пожидаева Марина</li>
+	    <li>Митрофанова Марина</li>
+	    <li>Жордания Тамара</li>
+	    <li>Гонг Энзе</li>
+    </ul>
+    </footer>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
