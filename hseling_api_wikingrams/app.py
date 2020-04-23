@@ -56,7 +56,7 @@ def clustersearch(data: dict):
         raise JSONRPCDispatchException(code=404, message="Ngrams not found")
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, port=5000)
+    app.run(host='0.0.0.0', debug=True, port=port=80)
     #app.run(debug=True)
 
 app.add_url_rule('/', 'datasets', api.as_view(), methods=['POST'])
