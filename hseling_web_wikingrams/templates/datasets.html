@@ -77,6 +77,7 @@
                         <div class="col-sm-4">
                         хх
                         </div>
+
                     </div> -->
                     <div class="row">
                         <div class="col-sm-7">
@@ -150,20 +151,63 @@
                 <p>
                     По аналогии с Google Ngrams начальные буквы, которыми названы файлы униграм, транслитерированы.
                 </p>
-                <p>
-                    <b> Транслиттерация: </b>
 
-                </p>
                 <br>
                 <p><b> Формат файлов: </b> Каждый файл представляет собой данные разделенные табуляцией. Каждая срока аналогично нграмам <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google Books</a> имеет следующий вид:
                 </p>
-                <blockquote><pre>index raw_ngram TAB n_gram TAB year TAB match_count TAB volume_count TAB new_index TAB non_dictionary TAB corrected_ngram NEWLINE</pre>
+                <blockquote><pre>index raw_ngram TAB n_gram TAB year TAB match_count TAB volume_count TAB new_index TAB is_bastard TAB corrected_ngram NEWLINE</pre>
                 </blockquote>
+                <p>
+                    <pre>index - начальная буква униграммы</pre>
+                    <pre>raw_ngram - униграмма в том виде, в котором она встречается в <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google Books</a> </pre>
+                    <pre>ngram - очещенная от тегов, если есть</pre>
+                    <pre>year - год употребления</pre>
+                    <pre>match_count - количество употреблений</pre>
+                    <pre>volume_count - количество книг, в которых встретилось употребление </pre>
+                    <pre>new_index - новая начальная буква, если изменилась </pre>
+                    <pre>is_bastard - предположительно подлежашее исправлению (униграммы, написанные латиницей или длиной меньше 5 символов не брались во внимание) </pre>
+                    <pre>corrected_ngram - исправленная алгоритмом униграмма</pre>
+                </p>
                 <p>В качестве примера ниже привеодится 1897-я строка файла <tt>1.tsv</tt>:
                 </p>
                 <blockquote><pre>1  1верь 1верь 1897  1 1 т True тверь
 </pre></blockquote>
-                <p>Информацию о значениях названий колонок можно узнать на странице <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google Books</a>.
+                <p>Подробнее о <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google Books</a>.
+                </p>
+                <p>
+                    <b> Транслиттерация индексов: </b>
+                    <small class="display-4" style="font-size: 80%;width: 40%;height: 80%">
+                    <p>а   -   a</p>
+                    <p>я   -   a</p>
+                    <p>ь   -   a</p>
+                    <p>б   -   b</p>
+                    <p>ц   -   c</p>
+                    <p>ч   -   c</p>
+                    <p>д   -   d</p>
+                    <p>е   -   e</p>
+                    <p>ё   -   e</p>
+                    <p>э   -   e</p>
+                    <p>ф   -   f</p>
+                    <p>г   -   g</p>
+                    <p>х   - h</p>
+                    <p>и   - i</p>
+                    <p>й   - j</p>
+                    <p>к   - k</p>
+                    <p>л   - l</p>
+                    <p>м   - m</p>
+                    <p>н   - n</p>
+                    <p>о   - o</p>
+                    <p>п   - p</p>
+                    <p>р   - r</p>
+                    <p>с   - s</p>
+                    <p>ш   - s</p>
+                    <p>щ   - s</p>
+                    <p>т   - t</p>
+                    <p>у   - u</p>
+                    <p>в   - v</p>
+                    <p>з  - z</p>
+                    <p>ж  - z</p>
+                </small>
                 </p>
             </div>
         </div>
@@ -176,10 +220,10 @@
         <p>Участники проекта:</p>
     <ul>
         <li>Николаева Анна (WikiNgram Viewer) <a href="https://t.me/annnyway">[Telegram]</a> [email: <a href="malito:nikolaeva.ann.anyway@gmail.com">nikolaeva.ann.anyway@gmail.com</a>]</li>
-        <li>Пожидаева Марина (Similarity Viewer) <a href="https://t.me/mpozhidaeva">[Telegram]</a> [email: <a href="malito:m.a.pozhidaeva@gmail.com">m.a.pozhidaeva@gmail.com]</a></li>
-        <li>Митрофанова Марина (Pre-reform Unigrams) <a href="https://t.me/pumpumpwirum">[Telegram] </a>[email: <a href="malito:mitrofanovamarina96@gmail.com">mitrofanovamarina96@gmail.com</a>]</li>
-        <li>Жордания Тамара (разработка сайта)</li>
-        <li>Гонг Энзе (разработка сайта)</li>
+	    <li>Пожидаева Марина (Similarity Viewer) <a href="https://t.me/mpozhidaeva">[Telegram]</a> [email: <a href="malito:m.a.pozhidaeva@gmail.com">m.a.pozhidaeva@gmail.com]</a></li>
+	    <li>Митрофанова Марина (Pre-reform Unigrams) <a href="https://t.me/pumpumpwirum">[Telegram] </a>[email: <a href="malito:mitrofanovamarina96@gmail.com">mitrofanovamarina96@gmail.com</a>]</li>
+	    <li>Жордания Тамара (разработка сайта)</li>
+	    <li>Гонг Энзе (разработка сайта)</li>
     </ul></footer>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
